@@ -13,9 +13,9 @@ def readCsv():
         valueReader = csv.reader(csvfile)
         for row in valueReader:
             if minval == -1:
-                minval = int(row[3])
+                minval = int(float(row[3]))
             else:
-                minval = min(minval, int(row[3]))
+                minval = min(minval, int(float(row[3])))
 
             if chunkDifference == -1:
                 chunkDifference = int(row[2])-int(row[1])
