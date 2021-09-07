@@ -12,6 +12,10 @@ def readCsv():
     with open('C:\\Users\\targe\\Documents\\hpx\\build\\examples\\quickstart\\exclusiveOutputAlterAvg.csv') as csvfile:
         valueReader = csv.reader(csvfile)
         for row in valueReader:
+            if int(row[0]) == 0:
+                seqTime = row
+                continue
+
             if minval == -1:
                 minval = int(float(row[3]))
             else:
@@ -34,7 +38,7 @@ def readCsv():
 
     functocolor = {
         1 : 'red',
-        2 : 'blue',
+        2 : (0.0, 1.0, 0.0, 0.1),
         3 : 'orange'
     }
     handles = [mpatches.Patch(color='red', label='Stage 1'),
@@ -50,6 +54,11 @@ def readCsv():
             start = val[1] - minval
             width = val[2]
             ax.broken_barh([(start, width)], (key[0], key[1]-key[0]), facecolor=functocolor[val[0]], edgecolor='black')
+
+    # calculate seq width
+    print(int(float(seqTime[4])))
+    rect = mpatches.Rectangle((0, 0), int(float(seqTime[4])), 1000, linewidth=1, edgecolor='black', facecolor='brown')
+    ax.add_patch(rect)
 
     plt.gca().invert_yaxis()
     plt.show()
