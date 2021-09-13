@@ -14,16 +14,18 @@ def readCsv():
 
     fig, ax = plt.subplots()
 
-    chunkFolders = ['int_default_chunk_size', 'int_chunk_size_by_48', 'int_chunk_size_by_96']
+    chunkFolders = ['int_default_chunk_size', 'int_chunk_size_by_24', 'int_chunk_size_by_48', 'int_chunk_size_by_96']
     chunkColorsPar = {
-        'int_default_chunk_size' : (0.0, 1.0, 0.0),
-        'int_chunk_size_by_48' : (0.0, 0.6, 0.0),
-        'int_chunk_size_by_96' : (0.0, 0.2, 0.0)
+        'int_default_chunk_size' : "#FFB300",
+        'int_chunk_size_by_24' : "#803E75",
+        'int_chunk_size_by_48' : "#FF6800",
+        'int_chunk_size_by_96' : "#A6BDD7"
     }
     chunkColorsOld = {
-        'int_default_chunk_size' : (0.0, 0.0, 0.8),
-        'int_chunk_size_by_48' : (0.0, 0.0, 0.6),
-        'int_chunk_size_by_96' : (0.0, 0.0, 0.2)
+        'int_default_chunk_size' : "#CEA262",
+        'int_chunk_size_by_24' : "#817066",
+        'int_chunk_size_by_48' : "#007D34",
+        'int_chunk_size_by_96' : "#F6768E"
     }
 
     for folder_name in chunkFolders:
@@ -34,7 +36,7 @@ def readCsv():
         parRelative = []
         oldRelative = []
 
-        with open('C:\\Users\\targe\\Pictures\\scan_benchmarks\\' + folder_name + '\\csv_files\\transformExclusiveScanCompare.csv') as csvfile:
+        with open('C:\\Users\\targe\\Pictures\\scan_benchmarks\\24cores\\' + folder_name + '\\csv_files\\inclusiveScanCompare.csv') as csvfile:
             valueReader = csv.reader(csvfile)
             first = True
             c = 5
@@ -66,9 +68,11 @@ def readCsv():
     handles = []
     handles.append(mpatches.Patch(color=labelToCol['seq'], label="seq"))
     handles.append(mpatches.Patch(color=chunkColorsPar['int_default_chunk_size'], label="par - default"))
+    handles.append(mpatches.Patch(color=chunkColorsPar['int_chunk_size_by_24'], label="par - chunk size by 24"))
     handles.append(mpatches.Patch(color=chunkColorsPar['int_chunk_size_by_48'], label="par - chunk size by 48"))
     handles.append(mpatches.Patch(color=chunkColorsPar['int_chunk_size_by_96'], label="par - chunk size by 96"))
     handles.append(mpatches.Patch(color=chunkColorsOld['int_default_chunk_size'], label="old - default"))
+    handles.append(mpatches.Patch(color=chunkColorsOld['int_chunk_size_by_24'], label="old - chunk size by 24"))
     handles.append(mpatches.Patch(color=chunkColorsOld['int_chunk_size_by_48'], label="old - chunk size by 48"))
     handles.append(mpatches.Patch(color=chunkColorsOld['int_chunk_size_by_96'], label="old - chunk size by 96"))
 
