@@ -2,6 +2,8 @@ import csv
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
+from os import listdir
+from os.path import isfile
 
 def readCsv():
     labelToCol = {
@@ -20,7 +22,7 @@ def readCsv():
     parRelative = []
     oldRelative = []
 
-    with open('C:\\Users\\targe\\Documents\\scan_benchmarks\\csv_files\\transformInclusiveScanCompare.csv') as csvfile:
+    with open('C:\\Users\\targe\\Pictures\\scan_benchmarks\\int_chunk_size_by_48\\csv_files\\copyIfCompare.csv') as csvfile:
         valueReader = csv.reader(csvfile)
         first = True
         c = 5
@@ -43,7 +45,10 @@ def readCsv():
 
     ax.plot(inputSizes, parRelative, color=labelToCol['par'])
     ax.plot(inputSizes, oldRelative, color=labelToCol['old'])
-    ax.plot([5, 32], [1, 1], color=labelToCol['seq'])
+    ax.plot([5, 30], [1, 1], color=labelToCol['seq'])
+
+    ax.set_xlabel('i where the input size is 2^i')
+    ax.set_ylabel('Relative speedup to sequential')
 
     handles = []
     handles.append(mpatches.Patch(color=labelToCol['seq'], label="seq"))
